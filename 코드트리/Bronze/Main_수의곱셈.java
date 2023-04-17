@@ -1,5 +1,4 @@
-// 문제 링크 https://www.codetree.ai/training-field/search/specific-alphabet-of-two-words/description?page=1&pageSize=20&username=hjle2&tier=1%2C5&tags=Greedy&statuses=&name=
-
+// 문제 링크 https://www.codetree.ai/training-field/search/specific-alphabet-of-two-words/description?page=1&pageSize=20&username=
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
