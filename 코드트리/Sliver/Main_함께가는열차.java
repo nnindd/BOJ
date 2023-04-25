@@ -1,4 +1,5 @@
 //문제 링크 https://www.codetree.ai/training-field/search/a-train-that-goes-together/description?page=1&pageSize=20&username=
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
