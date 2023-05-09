@@ -39,29 +39,18 @@ public class Main {
         int bcnt = 0; //B로 시작하는 경우 색칠할 사각형 수
 
         //해당 정사각형에서 색이 일치하지 않는 사각형 개수 확인
-        //W로 시작하는 경우
-        loop1:
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 char now = map[row + i][col + j];
-                if ((i % 2 == 0 && now != W[j]) || (i % 2 == 1 && now != B[j])) {
-                    wcnt++;
-                    if (wcnt > res)
-                        break loop1; //더 이상 탐색 불필요
-
+                if(i%2==0){
+                    if(now!=W[j]) wcnt++;
+                    if(now!=B[j]) bcnt++;
+                }else{
+                    if(now!=B[j]) wcnt++;
+                    if(now!=W[j]) bcnt++;
                 }
-            }
-        }
-        //B로 시작하는 경우
-        loop2:
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                char now = map[row + i][col + j];
-                if ((i % 2 == 1 && now != W[j]) || (i % 2 == 0 && now != B[j])) {
-                    bcnt++;
-                    if (bcnt > res)
-                        break loop2; //더 이상 탐색 불필요
-                }
+                if(wcnt > res && bcnt > res)
+                    return res;
             }
         }
         return Math.min(res, Math.min(wcnt, bcnt));
