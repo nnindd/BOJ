@@ -29,7 +29,7 @@ public class Main {
             //ex) YZ라면, digit[Y] += (35 - Y) * 36^1을 저장함
             BigInteger pow = BigInteger.ONE; //지수 값
             for (int j = str.length() - 1; j >= 0; j--) {
-                int idx = getIntIndex(str.charAt(j)); //digit에 저장할 인덱스 가져오기
+                int idx = str.charAt(j) <= '9' ? str.charAt(j) - '0' : str.charAt(j) - 'A' + 10; //digit에 저장할 인덱스 설정
                 digit[idx] = digit[idx].add(pow.multiply(BigInteger.valueOf(35 - idx)));
                 pow = pow.multiply(BigInteger.valueOf(36)); //다음 자리수로
             }
@@ -49,12 +49,6 @@ public class Main {
         //4) 출력
         System.out.println(sum.toString(36).toUpperCase());
 
-    }
-
-    private static int getIntIndex(char c) {
-        //c에 해당하는 10진수로 변환된 인덱스
-        if (c <= '9') return c - '0';
-        return c - 'A' + 10;
     }
 
 }
