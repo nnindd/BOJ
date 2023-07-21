@@ -17,12 +17,7 @@ public class Main {
         StringBuilder sb;
         //ioi라면 인덱스를 +2, 아니라면 인덱스를 +1
         while (idx < M - 2) { //가장 끝 3자리까지만 비교하도록
-            sb = new StringBuilder();
-            for (int i = idx; i < idx + 3; i++) {
-                sb.append(str.charAt(i));
-            }
-
-            if (sb.toString().equals("IOI")) {
+            if ((str.charAt(idx) == 'I' &&  str.charAt(idx+1) == 'O' && str.charAt(idx+2) == 'I')) {
                 idx += 2;
                 cnt++;
 
