@@ -11,7 +11,18 @@ public class Main {
         int N = Integer.parseInt(tokens.nextToken());
         int M = Integer.parseInt(tokens.nextToken());
 
+        final int INF = 101; //최대 100단계
+
         int[][] arr = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (i == j) {
+                    arr[i][j] = 0;
+                    continue;
+                }
+                arr[i][j] = arr[j][i] = INF;
+            }
+        }
 
         for (int i = 0; i < M; i++) {
             tokens = new StringTokenizer(br.readLine());
@@ -25,29 +36,31 @@ public class Main {
         for (int k = 0; k < N; k++) {
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
-                    if (i == j) continue;
-                    if(arr[i][k] == 0 || arr[k][j] == 0) continue;
-                    if(arr[i][j] == 0){
+                    if (arr[i][j] > arr[i][k] + arr[k][j]) {
                         arr[i][j] = arr[i][k] + arr[k][j];
-                    }else{
-                        arr[i][j] = Math.min(arr[i][j], arr[i][k] + arr[k][j]);
                     }
                 }
             }
         }
 
-        int p = N + 1;
-        int min = Integer.MAX_VALUE;
+        int min = INF; //최대 100단계
+        int res = 0;
+        //앞에서부터 탐색하는 경우 : min과 sum을 비교할 때 무조건 작은 경우만 탐색하면 된다.
+        //뒤에서부터 탐색하는 경우 : 결과값이 같아도 가장 작은 사람의 번호가 저장됨
+        // >> 취향차이
         for (int i = N - 1; i >= 0; i--) {
             int sum = 0;
             for (int j = 0; j < N; j++) {
                 sum += arr[i][j];
             }
+
             if (min >= sum) {
                 min = sum;
-                p = i;
+                res = i;
             }
         }
-        System.out.println(++p);
+
+        System.out.println(++res); //인덱스 매칭
+
     }
 }
