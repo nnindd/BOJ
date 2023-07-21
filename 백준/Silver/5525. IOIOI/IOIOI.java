@@ -8,7 +8,7 @@ public class Main {
 
         int N = Integer.parseInt(br.readLine());
         int M = Integer.parseInt(br.readLine());
-        String str = br.readLine();
+        char[] str = br.readLine().toCharArray();
 
         int res = 0;
         int idx = 0;
@@ -17,7 +17,7 @@ public class Main {
         StringBuilder sb;
         //ioi라면 인덱스를 +2, 아니라면 인덱스를 +1
         while (idx < M - 2) { //가장 끝 3자리까지만 비교하도록
-            if ((str.charAt(idx) == 'I' &&  str.charAt(idx+1) == 'O' && str.charAt(idx+2) == 'I')) {
+            if ((str[idx] == 'I' &&  str[idx+1] == 'O' && str[idx+2] == 'I')) {
                 idx += 2;
                 cnt++;
 
