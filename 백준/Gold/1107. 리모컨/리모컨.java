@@ -4,12 +4,15 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
+    static int N, res;
+    static boolean[] numbers;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
+        N = Integer.parseInt(br.readLine());
         int M = Integer.parseInt(br.readLine());
 
-        boolean[] numbers = new boolean[10];
+        numbers = new boolean[10];
 
         if (M != 0) {
             StringTokenizer tokens = new StringTokenizer(br.readLine());
@@ -18,27 +21,24 @@ public class Main {
             }
         }
 
-        int res = Math.abs(100 - N); //+/-키로만 이동
+        res = Math.abs(100 - N); //+/-키로만 이동
         if (N == 100) {
             res = 0;
         } else {
-            //모든 번호를 눌러봄
-            for (int i = 0; i < 10000001; i++) {
-                String num = Integer.toString(i);
-
-                boolean flag = false;
-                for (int j = 0; j < num.length(); j++) {
-                    if (numbers[num.charAt(j) - '0']) {
-                        flag = true;
-                        break;
-                    }
-                }
-
-                if (!flag) {
-                    res = Math.min(res, Math.abs(i - N) + num.length());
-                }
-            }
+            dfs("");
         }
         System.out.println(res);
+    }
+
+    private static void dfs(String s) {
+        for (int i = 0; i < 10; i++) {
+            if (numbers[i]) continue;
+            String str = s + i;
+            res = Math.min(res, Math.abs(N - Integer.parseInt(str)) + str.length());
+
+            if (str.length() < 6) {
+                dfs(str);
+            }
+        }
     }
 }
