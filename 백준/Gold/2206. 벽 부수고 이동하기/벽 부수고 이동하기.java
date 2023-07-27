@@ -52,23 +52,20 @@ public class Main {
                 int ny = cur[1] + dir[d][1];
 
                 if (!isRange(nx, ny)) continue;
+                if (v[nx][ny][cur[3]]) continue;
 
-                if (!map[nx][ny]) {//벽이 아닌 경우
-                    //부신 적 없음
-                    if(cur[3] == 0 && !v[nx][ny][0]){
-                        q.offer(new int[]{nx, ny, cur[2]+1, 0});
-                        v[nx][ny][0] = true;
-                    }else if(cur[3] == 1 && !v[nx][ny][1]){//부신 적 있음
-                        q.offer(new int[]{nx, ny, cur[2]+1, 1});
-                        v[nx][ny][1] = true;
-                    }
-                } else {//벽인 경우
-                    //벽을 부신적이 없으면 부셔줌
-                    if (cur[3] == 0 && !v[nx][ny][0]) {
-                        q.offer(new int[]{nx, ny, cur[2] + 1, 1});
-                        v[nx][ny][1] = true;
-                    }
+                int[] temp = {nx, ny, cur[2] + 1, cur[3]};
+
+                if (map[nx][ny]) { //벽이면
+                    //이미 부셨다면 지나감
+                    if (temp[3] == 1) continue;
+                    //벽 부심 처리
+                    temp[3] = 1;
+
                 }
+                v[nx][ny][temp[3]] = true;
+                q.offer(temp);
+                
             }
         }
         return min;
