@@ -25,7 +25,7 @@ class Solution {
             return;
         }
 
-        for(int i=0; i<=limit; i++){
+        for(int i=0; i<=limit; i++){ //최소 인원수만큼 더하기!!
             mento[dept] += i;
             dfs(dept+1, limit - i, mento);
             mento[dept] -= i;
