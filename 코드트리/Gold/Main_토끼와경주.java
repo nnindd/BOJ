@@ -1,5 +1,5 @@
 // 문제 링크 https://www.codetree.ai/training-field/frequent-problems/problems/rabit-and-race/description?page=3&pageSize=20
-
+ 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
