@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
- 
+
 public class Main {
     static class Pos {
         int x, y;
@@ -76,11 +76,10 @@ public class Main {
 
             rotateRect(); //미로 회전
         }
-
-        exit.x++;
-        exit.y++;
-        System.out.println(total);
-        System.out.println(exit.x + " " + exit.y);
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append(total).append("\n").append(exit.x+1).append(" ").append(exit.y+1);
+        System.out.println(sb);
     }
 
     private static boolean isAllOut() {
@@ -97,14 +96,6 @@ public class Main {
             copy[i] = Arrays.copyOfRange(map[i], 0, N);
         }
 
-        //사람은 77로 출구는 99로 넣음
-        copy[exit.x][exit.y] = 99;
-
-        for (int i = 0; i < M; i++) {
-            if (p[i].isOut) continue;
-            copy[p[i].x][p[i].y] = 77;
-        }
-
         //복사한 값을 원본에 돌려서 넣기
         for (int i = bx, x = by; i < bx + boxSize; i++, x++) {
             for (int j = by, y = bx + boxSize - 1; j < by + boxSize; j++, y--) {
@@ -113,9 +104,6 @@ public class Main {
                 //내구도 감소
                 if (isArea(map[i][j], 1, 10))
                     map[i][j]--;
-
-                //출구, 사람 맵 번호 복귀
-                if(map[i][j] == 99 || map[i][j] == 77) map[i][j] = 0;
             }
         }
 
@@ -125,7 +113,7 @@ public class Main {
             int nx = exit.x - bx;
             int ny = exit.y - by;
 
-            //회전시킴
+            //회전시키고 기준점 다시 옮겨줌
             //20 -> 00
             //10 -> 01
             //00 -> 02
