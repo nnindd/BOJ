@@ -3,20 +3,9 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         String[] str = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
         
-        for(int i=0; i<s.length(); i++){
-            if(s.charAt(i) >= '0' && s.charAt(i) <= '9'){
-                sb.append(s.charAt(i));
-                continue;
-            }
-            
-            for(int j=0; j<str.length; j++){
-                if(s.substring(i).startsWith(str[j])){
-                    sb.append(j);
-                    i += str[j].length() - 1;
-                }    
-            }
+        for(int i=0; i<str.length; i++){
+            s = s.replaceAll(str[i], Integer.toString(i));
         }
-        
-        return Integer.parseInt(sb.toString());
+        return Integer.parseInt(s);
     }
 }
